@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Two-Factor Authentication</title>
+</head>
+<body>
+
+	<img th:src="${qrcodeURI}" style="margin-bottom: 10px;"/>
+	<div>
+		<input type="text" id="account" th:value=" ${account}" readonly="readonly"/><br/>
+		<input type="text" id="otpCode" style="margin-top: 5px;"/>
+		<button onclick="javascript:verify();">Verify</button>
+	</div>
+
+</body>
+
+<script type="text/javascript">
+	function verify() {
+		var account = document.getElementById('account').value;
+		var code = document.getElementById('otpCode').value;
+		window.location.href = "/verify?account="+account+"&code="+code;
+	}
+</script>
+</html>
